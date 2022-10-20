@@ -45,12 +45,19 @@ function App() {
   ];
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
+  const [data3, setData3] = useState([]);
+  const [fetched, setFetched] = useState(false);
+  const [fetched2, setFetched2] = useState(false);
+  const [fetched3, setFetched3] = useState(false);
+
   const [chain, setChain] = useState(1);
   const [walletAddress, setWalletAddress] = useState("");
   const [contractAddress, setContractAddress] = useState("");
+  const [txhash, setTxHash] = useState("");
 
   const baseUrl = `https://api.covalenthq.com/v1/${chain}/address/${walletAddress}/balances_v2/`;
   const baseUrl2 = `https://api.covalenthq.com/v1/${chain}/tokens/${contractAddress}/token_holders/`;
+  const baseUrl3 = `https://api.covalenthq.com/v1/${chain}/transaction_v2/${txhash}/`;
 
   const fetchBlocks = async () => {
     await axios
@@ -61,6 +68,7 @@ function App() {
         },
       })
       .then((data) => setData(data.data.data.items));
+    setFetched(true);
   };
 
   const fetchContract = async () => {
@@ -71,6 +79,18 @@ function App() {
         },
       })
       .then((data) => setData2(data.data.data.items));
+    setFetched2(true);
+  };
+
+  const fetchTransactions = async () => {
+    await axios
+      .get(baseUrl3, {
+        headers: {
+          authorization: `Bearer ${covalent_api}`,
+        },
+      })
+      .then((data) => setData3(data.data.data.items));
+    setFetched3(true);
   };
 
   const handleChange = (event) => {
@@ -82,14 +102,14 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="title">
-          <p>Granular Blockchain</p>
+          <p>Any Blockchain Explorer</p>
         </div>
 
-        <div className="card">
+        <div className="container">
           <div className="fields">
             <div className="field-data">
               <div>
-                <div className="chainID">Chain</div>
+                <div className="chainID">Chain ID</div>
                 <select
                   value={chain}
                   onChange={handleChange}
@@ -115,35 +135,54 @@ function App() {
               <div className="button">
                 <button onClick={fetchBlocks}>Go</button>
               </div>
+              {fetched ? (
+                <div className="button">
+                  <button className="hide" onClick={() => setFetched(false)}>
+                    Hide
+                  </button>
+                </div>
+              ) : (
+                <div className="button">
+                  <button onClick={() => setFetched(true)}>Show</button>
+                </div>
+              )}
             </div>
           </div>
         </div>
-        <div className="data-container">
-          <div className="data">
-            {data.map((item) => (
-              <div className="item">
-                <div>
-                  <strong>Contract Name</strong>: {item.contract_name}
-                </div>
-                <div>
-                  <strong>Contract Ticker Symbol</strong>:{" "}
-                  {item.contract_ticker_symbol}
-                </div>
-                <div>
-                  <strong>Quote Rate</strong>: {item.quote_rate}
-                </div>
-                <div>
-                  <strong>Balance</strong>: {item.balance}
-                </div>
-              </div>
-            ))}
+        {fetched ? (
+          <div className="data-container">
+            <div className="data">
+              {data.map((item) => (
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Contract Name</th>
+                      <th scope="col">contract_ticker_symbol</th>
+                      <th scope="col">quote_rate</th>
+                      <th scope="col">Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{item.contract_name}</td>
+                      <td>{item.contract_ticker_symbol}</td>
+                      <td>{item.quote_rate}</td>
+                      <td>{item.balance}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="card-2">
+        ) : (
+          <div></div>
+        )}
+
+        <div className="container">
           <div className="fields">
             <div className="field-data">
               <div>
-                <div className="chainID">Chain</div>
+                <div className="chainID">Chain ID</div>
                 <select
                   value={chain}
                   onChange={handleChange}
@@ -169,30 +208,125 @@ function App() {
               <div className="button">
                 <button onClick={fetchContract}>Go</button>
               </div>
+              {fetched2 ? (
+                <div className="button">
+                  <button className="hide" onClick={() => setFetched2(false)}>
+                    Hide
+                  </button>
+                </div>
+              ) : (
+                <div className="button">
+                  <button onClick={() => setFetched2(true)}>Show</button>
+                </div>
+              )}
             </div>
           </div>
         </div>
-        <div className="data-container">
-          <div className="data">
-            {data2.map((item) => (
-              <div className="item">
-                <div>
-                  <strong>Contract Name</strong>: {item.contract_name}
-                </div>
-                <div>
-                  <strong>Contract Ticker Symbol</strong>:{" "}
-                  {item.contract_ticker_symbol}
-                </div>
-                <div>
-                  <strong>Quote Rate</strong>: {item.quote_rate}
-                </div>
-                <div>
-                  <strong>Balance</strong>: {item.balance}
-                </div>
+        {fetched2 ? (
+          <div className="data-container">
+            <div className="data">
+              {data2.map((item) => (
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Contract Name</th>
+                      <th scope="col">contract_ticker_symbol</th>
+
+                      <th scope="col">Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{item.contract_name}</td>
+                      <td>{item.contract_ticker_symbol}</td>
+
+                      <td>{item.balance}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
+
+        <div className="container">
+          <div className="fields">
+            <div className="field-data">
+              <div>
+                <div className="chainID">Chain ID</div>
+                <select
+                  value={chain}
+                  onChange={handleChange}
+                  id="chainID-select"
+                >
+                  {chainIDs.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  ))}
+                </select>
               </div>
-            ))}
+              <div className="inputs">
+                <div className="wallet-label">
+                  <label for="wallet-address"> TX Hash</label>
+                </div>
+                <input
+                  type="text"
+                  placeholder="enter your txhash "
+                  onChange={(e) => setTxHash(e.target.value)}
+                />
+              </div>
+              <div className="button">
+                <button onClick={fetchTransactions}>Go</button>
+              </div>
+              {fetched3 ? (
+                <div className="button">
+                  <button className="hide" onClick={() => setFetched3(false)}>
+                    Hide
+                  </button>
+                </div>
+              ) : (
+                <div className="button">
+                  <button onClick={() => setFetched3(true)}>Show</button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
+        {fetched3 ? (
+          <div className="data-container">
+            <div className="data">
+              {data3.map((item) => (
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Successful</th>
+                      <th scope="col">From</th>
+                      <th scope="col">To</th>
+                      <th scope="col">Gas Spent</th>
+                      <th scope="col">Sender Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{item.successful == true ? "True" : "false"}</td>
+                      <td>{item.from_address}</td>
+                      <td>{item.to_address}</td>
+                      <td>{item.gas_spent}</td>
+                      {item.log_events.map((item) => (
+                        <td>{item.sender_name}</td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );
