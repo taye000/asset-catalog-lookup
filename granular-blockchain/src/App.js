@@ -61,9 +61,6 @@ function App() {
       })
       .then((data) => setData(data.data.data.items));
   };
-  console.log(walletAddress);
-  console.log(chain);
-  console.log(covalent_api);
 
   const fetchContract = async () => {
     await axios
@@ -74,8 +71,7 @@ function App() {
       })
       .then((data) => setData(data.data.data.items));
   };
-  console.log(walletAddress);
-  console.log(chain);
+
   const handleChange = (event) => {
     console.log(event.target.value);
     setChain(event.target.value);
