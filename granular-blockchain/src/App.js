@@ -27,7 +27,7 @@ function App() {
     await axios
       .get(baseUrl, {
         headers: {
-          authorization: "ckey_ebedb7e86d2b469c96c168953db",
+          authorization: process.env.API_KEY,
         },
       })
       .then((data) => console.log(data));
