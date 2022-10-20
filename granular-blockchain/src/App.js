@@ -6,15 +6,35 @@ function App() {
   const chainIDs = [
     {
       value: "1",
-      text: "1",
+      text: "Eth",
     },
     {
-      value: "2",
-      text: "2",
+      value: "56",
+      text: "BSC",
     },
     {
-      value: "3",
-      text: "3",
+      value: "137",
+      text: "Polygon",
+    },
+    {
+      value: "100",
+      text: "Gnosis",
+    },
+    {
+      value: "25",
+      text: "Arbitrum",
+    },
+    {
+      value: "128",
+      text: "Huobi ECO",
+    },
+    {
+      value: "250",
+      text: "Fantom Opera",
+    },
+    {
+      value: "43114",
+      text: "Avalanche C-Chain",
     },
   ];
   const [data, setData] = useState([]);
@@ -25,21 +45,21 @@ function App() {
 
   const fetchBlocks = async () => {
     await axios
-      .get(baseUrl, {
-        headers: {
-          authorization: "ckey_ebedb7e86d2b469c96c168953db",
-        },
-      })
-      .then((data) => console.log(data));
+    .get(baseUrl, {
+      headers: {
+        authorization: "ckey_ebedb7e86d2b469c96c168953db",
+      },
+    })
+    .then((data) => console.log(data));
   };
+  console.log(walletAddress);
+  console.log(chain);
 
   const handleChange = (event) => {
     console.log(event.target.value);
     setChain(event.target.value);
   };
 
-  console.log(walletAddress);
-  console.log(chain);
 
   return (
     <div className="App">
@@ -52,7 +72,7 @@ function App() {
           <div className="fields">
             <div className="field-data">
               <div>
-                <div className="chainID">Chain ID</div>
+                <div className="chainID">Chain</div>
                 <select
                   value={chain}
                   onChange={handleChange}
