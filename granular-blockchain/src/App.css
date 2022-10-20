@@ -56,3 +56,24 @@ button{
   justify-content: center;
   align-items: center;
 }
+.data-container{
+  height:300px;
+  /* width: 650px; */
+  border: 4px solid rgb(27, 180, 185);
+  border-radius: 10px;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+.data{
+  justify-content: center;
+  align-items: center;
+  margin:10px;
+}
+.item{
+  display: flex;
+  /* margin:10px; */
+  justify-content: space-between;
+}
+.card-2{
+  margin-top:20px;
+}
