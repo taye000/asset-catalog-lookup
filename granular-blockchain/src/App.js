@@ -44,12 +44,13 @@ function App() {
     },
   ];
   const [data, setData] = useState([]);
+  const [data2, setData2] = useState([]);
   const [chain, setChain] = useState(1);
   const [walletAddress, setWalletAddress] = useState("");
   const [contractAddress, setContractAddress] = useState("");
 
   const baseUrl = `https://api.covalenthq.com/v1/${chain}/address/${walletAddress}/balances_v2/`;
-  const baseUrl2 = `https://api.covalenthq.com/v1/${chain}/address/${contractAddress}/balances_v2/`;
+  const baseUrl2 = `https://api.covalenthq.com/v1/${chain}/tokens/${contractAddress}/token_holders/`;
 
   const fetchBlocks = async () => {
     await axios
@@ -69,7 +70,7 @@ function App() {
           authorization: `Bearer ${covalent_api}`,
         },
       })
-      .then((data) => setData(data.data.data.items));
+      .then((data) => setData2(data.data.data.items));
   };
 
   const handleChange = (event) => {
@@ -173,7 +174,7 @@ function App() {
         </div>
         <div className="data-container">
           <div className="data">
-            {data.map((item) => (
+            {data2.map((item) => (
               <div className="item">
                 <div>
                   <strong>Contract Name</strong>: {item.contract_name}
