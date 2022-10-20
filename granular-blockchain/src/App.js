@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 
+let covalent_api = process.env.REACT_APP_COVALENT_API;
+
 function App() {
   const chainIDs = [
     {
@@ -45,21 +47,21 @@ function App() {
 
   const fetchBlocks = async () => {
     await axios
-    .get(baseUrl, {
-      headers: {
-        authorization: "ckey_ebedb7e86d2b469c96c168953db",
-      },
-    })
-    .then((data) => console.log(data));
+      .get(baseUrl, {
+        headers: {
+          authorization: `Bearer ${covalent_api}`,
+        },
+      })
+      .then((data) => console.log(data));
   };
   console.log(walletAddress);
   console.log(chain);
+  console.log(covalent_api);
 
   const handleChange = (event) => {
     console.log(event.target.value);
     setChain(event.target.value);
   };
-
 
   return (
     <div className="App">
