@@ -12,7 +12,7 @@ function App() {
     },
     {
       value: "56",
-      text: "BSC",
+      text: "Bsc",
     },
     {
       value: "137",
@@ -28,15 +28,19 @@ function App() {
     },
     {
       value: "128",
-      text: "Huobi ECO",
+      text: "Huobi",
     },
     {
       value: "250",
-      text: "Fantom Opera",
+      text: "Fantom",
     },
     {
       value: "43114",
-      text: "Avalanche C-Chain",
+      text: "Avalanche",
+    },
+    {
+      value: "1666600000",
+      text: "Harmony",
     },
   ];
   const [data, setData] = useState([]);
