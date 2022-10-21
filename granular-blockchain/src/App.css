@@ -24,12 +24,26 @@ p{
 .field-data{
   display: flex;
 }
-
+.get-chains{
+  font-size: 30px;
+  margin-top: 30px;
+  font-weight: 700;
+  color:dodgerblue;
+  border-radius: 10px;
+  height:40px;
+  margin-right: 325px;
+  justify-content: center;
+  align-items: center;
+  
+}
 .inputs{
     margin-left: 20px;
   display: block;
 }
-input{
+.date-inputs {
+  display: flex;
+}
+.input{
   height:40px;
   width: 300px;
 }
@@ -39,7 +53,11 @@ input{
     justify-content: center;
     align-items: center;
 }
-button{
+.end{
+  display: block;
+  margin-left:10px;
+}
+.button1{
   height:40px;
   width:200px;
   margin-top:35px;
@@ -47,6 +65,30 @@ button{
   background-color: aqua;
   font-size: 20px;
   border-radius: 20px;
+  font-weight: bold;
+  justify-content: center;
+}
+.button2 {
+  height: 40px;
+  width: 100px;
+  margin-top: 35px;
+  margin-left: 20px;
+  background-color: rgb(173, 143, 46);
+  color:white;
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  justify-content: center;
+}
+.button3 {
+  height: 40px;
+  width: 100px;
+  margin-top: 35px;
+  margin-left: 20px;
+  background-color: rgb(198, 42, 180);
+  color:white;
+  font-size: 20px;
+  border-radius: 10px;
   font-weight: bold;
   justify-content: center;
 }
