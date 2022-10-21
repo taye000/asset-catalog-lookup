@@ -53,6 +53,7 @@ function App() {
   const [data5, setData5] = useState([]);
   const [data6, setData6] = useState([]);
   const [data7, setData7] = useState([]);
+  const [map, setMapchain] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [fetched2, setFetched2] = useState(false);
   const [fetched3, setFetched3] = useState(false);
@@ -74,6 +75,7 @@ function App() {
   const baseUrl3 = `https://api.covalenthq.com/v1/${chain}/transaction_v2/${txhash}/`;
   const baseUrl4 = `https://api.covalenthq.com/v1/${chain}/block_v2/${start}/${end}/`;
   const baseUrl5 = `https://api.covalenthq.com/v1/chains/`;
+  const mapchain = `https://api.covalenthq.com/v1/chains/`;
   const baseUrl6 = `https://api.covalenthq.com/v1/chains/status/`;
   const baseUrl7 = `https://api.covalenthq.com/v1/${chain}/tokens/${contractAddress}/token_holders_changes/?starting-block=${startingBlock}&ending-block=latest`;
 
@@ -120,6 +122,7 @@ function App() {
       .then((data) => setData4(data.data.data.items));
     setFetched4(true);
   };
+
   const fetchAllchains = async () => {
     await axios
       .get(baseUrl5, {
@@ -130,6 +133,20 @@ function App() {
       .then((data) => setData5(data.data.data.items));
     setFetched5(true);
   };
+  const fetchMapchain = async () => {
+    await axios
+      .get(mapchain, {
+        headers: {
+          authorization: `Bearer ${covalent_api}`,
+        },
+      })
+      .then((data) => setData5(data.data.data.items));
+    setMapchain(true);
+  };
+  useEffect(() => {
+    fetchMapchain();
+    // setData5(true);
+  }, []);
   const fetchChainStatus = async () => {
     await axios
       .get(baseUrl6, {
@@ -157,21 +174,15 @@ function App() {
         <div className="title">
           <p>Any Blockchain Explorer</p>
         </div>
-
         <div className="container">
           <div className="fields">
             <div className="field-data">
               <div>
                 <div className="chainID">Chain ID</div>
-                <select
-                  value={chain}
-                  onChange={(e) => setChain(e.target.value)}
-                  id="chains"
-                >
-                  {chainIDs.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.text}
-                    </option>
+
+                <select>
+                  {data5.map((item) => (
+                    <option>{item.chain_id}</option>
                   ))}
                 </select>
               </div>
@@ -235,7 +246,6 @@ function App() {
         ) : (
           <div></div>
         )}
-
         <div className="container">
           <div className="fields">
             <div className="field-data">
@@ -289,7 +299,6 @@ function App() {
             </div>
           </div>
         </div>
-
         {fetched2 ? (
           <div className="data-container">
             <div className="data">
@@ -416,7 +425,6 @@ function App() {
         ) : (
           <div></div>
         )}
-
         <div className="container">
           <div className="fields">
             <div className="field-data">
