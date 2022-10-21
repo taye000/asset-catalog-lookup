@@ -1,15 +1,15 @@
-.container{
-  box-sizing: border-box;
-  margin: 30px;
-}
+
 .title{
-  background-color: rgb(167, 167, 187);
+  background-color: rgb(117, 117, 227);
+  padding-left: 36%;
+  font-weight: 900;
+  font-family: "Fira Code";
 }
 p{
   font-size: 29px;
   justify-content: center;
   align-items: center;
-  color:brown
+  color:rgb(41, 244, 240)
 }
 #chainID-select{
   width: 100px;
@@ -24,10 +24,7 @@ p{
 .field-data{
   display: flex;
 }
-.fields{
-  justify-content: center;
-  align-items: center;
-}
+
 .inputs{
     margin-left: 20px;
   display: block;
@@ -49,6 +46,7 @@ button{
   margin-left: 20px;
   background-color: aqua;
   font-size: 20px;
+  border-radius: 20px;
   font-weight: bold;
   justify-content: center;
 }
@@ -64,16 +62,8 @@ button{
   scroll-behavior: smooth;
   overflow-y: auto;
 }
-.data{
-  justify-content: center;
-  align-items: center;
-  margin:10px;
-}
-.item{
-  display: flex;
-  /* margin:10px; */
-  justify-content: space-between;
-}
-.card-2{
-  margin-top:20px;
+
+
+.hide{
+  background-color: yellow;
 }
