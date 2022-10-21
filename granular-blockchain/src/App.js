@@ -39,7 +39,7 @@ function App() {
       text: "Avalanche",
     },
     {
-      value: "1666600000",
+      value: "1666700000",
       text: "Harmony",
     },
   ];
@@ -163,8 +163,7 @@ function App() {
             <div className="field-data">
               <div>
                 <div className="chainID">Chain ID</div>
-                <input type="text" list="chains" />
-                <datalist
+                <select
                   value={chain}
                   onChange={(e) => setChain(e.target.value)}
                   id="chains"
@@ -174,7 +173,7 @@ function App() {
                       {option.text}
                     </option>
                   ))}
-                </datalist>
+                </select>
               </div>
               <div className="inputs">
                 <div className="wallet-label">
@@ -242,8 +241,8 @@ function App() {
             <div className="field-data">
               <div>
                 <div className="chainID">Chain ID</div>
-                <input type="text" list="chains" />
-                <datalist
+
+                <select
                   value={chain}
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
@@ -253,7 +252,7 @@ function App() {
                       {option.text}
                     </option>
                   ))}
-                </datalist>
+                </select>
               </div>
               <div className="inputs">
                 <div className="wallet-label">
@@ -324,8 +323,7 @@ function App() {
             <div className="field-data">
               <div>
                 <div className="chainID">Chain ID</div>
-                <input type="text" list="chains" />
-                <datalist
+                <select
                   value={chain}
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
@@ -335,22 +333,22 @@ function App() {
                       {option.text}
                     </option>
                   ))}
-                </datalist>
+                </select>
               </div>
               <div>
                 <div className="chainID">Starting Block</div>
-                <input type="text" list="blocks" />
-                <datalist
+
+                <select
                   value={startingBlock}
                   onChange={(e) => setStartingBlock(e.target.value)}
-                  id="block-select"
+                  id="chainID-select"
                 >
                   {StartingBlock.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.text}
                     </option>
                   ))}
-                </datalist>
+                </select>
               </div>
               <div className="inputs">
                 <div className="wallet-label">
@@ -424,8 +422,7 @@ function App() {
             <div className="field-data">
               <div>
                 <div className="chainID">Chain ID</div>
-                <input type="text" list="chains" />
-                <datalist
+                <select
                   value={chain}
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
@@ -435,7 +432,7 @@ function App() {
                       {option.text}
                     </option>
                   ))}
-                </datalist>
+                </select>
               </div>
               <div className="inputs">
                 <div className="wallet-label">
@@ -509,8 +506,8 @@ function App() {
             <div className="field-data">
               <div>
                 <div className="chainID">Chain ID</div>
-                <input type="text" list="chains" />
-                <datalist
+
+                <select
                   value={chain}
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
@@ -520,7 +517,7 @@ function App() {
                       {option.text}
                     </option>
                   ))}
-                </datalist>
+                </select>
               </div>
               <div className="inputs">
                 <div className="date-inputs">
