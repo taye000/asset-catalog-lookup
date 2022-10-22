@@ -145,7 +145,7 @@ function App() {
 
                 <select id="chainID-select" onChange={(e) => setChain(e.target.value)}>
                   {data5.map((item) => (
-                    <option >{item.chain_id} {item.label}</option>
+                    <option >{item.chain_id} { }</option>
                   ))}
                 </select>
               </div>
@@ -222,7 +222,7 @@ function App() {
                 >
                   {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.chain_id} {option.label}
+                      {option.chain_id} { }
                     </option>
                   ))}
                 </select>
@@ -302,7 +302,7 @@ function App() {
                 >
                   {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.chain_id} {option.label}
+                      {option.chain_id} { }
                     </option>
                   ))}
                 </select>
@@ -390,7 +390,7 @@ function App() {
                 >
                   {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.chain_id} {option.label}
+                      {option.chain_id} { }
                     </option>
                   ))}
                 </select>
@@ -475,7 +475,7 @@ function App() {
                 >
                   {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.chain_id} {option.label}
+                      {option.chain_id} { }
                     </option>
                   ))}
                 </select>
@@ -606,7 +606,7 @@ function App() {
                       <td>{item.is_testnet ? "True" : "False"}</td>
 
                       <td>{item.chain_id}</td>
-                      <td>{item.label}</td>
+                      <td>{ }</td>
                     </tr>
                   </tbody>
                 </table>
