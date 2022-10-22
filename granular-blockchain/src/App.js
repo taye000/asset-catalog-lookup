@@ -5,46 +5,9 @@ import axios from "axios";
 let covalent_api = "ckey_ebedb7e86d2b469c96c168953db";
 
 function App() {
-  const chainIDs = [
-    {
-      value: "1",
-      text: "Eth",
-    },
-    {
-      value: "56",
-      text: "Bsc",
-    },
-    {
-      value: "137",
-      text: "Polygon",
-    },
-    {
-      value: "100",
-      text: "Gnosis",
-    },
-    {
-      value: "25",
-      text: "Arbitrum",
-    },
-    {
-      value: "128",
-      text: "Huobi",
-    },
-    {
-      value: "250",
-      text: "Fantom",
-    },
-    {
-      value: "43114",
-      text: "Avalanche",
-    },
-    {
-      value: "1666700000",
-      text: "Harmony",
-    },
-  ];
 
-  const StartingBlock = [{ value: 13916192, text: "Block 1" }];
+
+
 
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
@@ -63,7 +26,7 @@ function App() {
   const [fetched7, setFetched7] = useState(false);
 
   const [chain, setChain] = useState(1);
-  const [startingBlock, setStartingBlock] = useState();
+  const [startingBlock, setStartingBlock] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [contractAddress, setContractAddress] = useState("");
   const [txhash, setTxHash] = useState("");
@@ -180,9 +143,9 @@ function App() {
               <div>
                 <div className="chainID">Chain ID</div>
 
-                <select>
+                <select id="chainID-select" onChange={(e) => setChain(e.target.value)}>
                   {data5.map((item) => (
-                    <option>{item.chain_id}</option>
+                    <option >{item.chain_id} {item.label}</option>
                   ))}
                 </select>
               </div>
@@ -253,13 +216,13 @@ function App() {
                 <div className="chainID">Chain ID</div>
 
                 <select
-                  value={chain}
+
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
                 >
-                  {chainIDs.map((option) => (
+                  {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.text}
+                      {option.chain_id} {option.label}
                     </option>
                   ))}
                 </select>
@@ -333,13 +296,13 @@ function App() {
               <div>
                 <div className="chainID">Chain ID</div>
                 <select
-                  value={chain}
+
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
                 >
-                  {chainIDs.map((option) => (
+                  {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.text}
+                      {option.chain_id} {option.label}
                     </option>
                   ))}
                 </select>
@@ -347,17 +310,7 @@ function App() {
               <div>
                 <div className="chainID">Starting Block</div>
 
-                <select
-                  value={startingBlock}
-                  onChange={(e) => setStartingBlock(e.target.value)}
-                  id="chainID-select"
-                >
-                  {StartingBlock.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.text}
-                    </option>
-                  ))}
-                </select>
+                <input type="text" placeholder="Starting block" className="starting-block" onChange={(e) => setStartingBlock(e.target.value)} />
               </div>
               <div className="inputs">
                 <div className="wallet-label">
@@ -372,7 +325,7 @@ function App() {
               </div>
               <div>
                 <button
-                  className="button1"
+                  className="button-starting"
                   onClick={fetchChangesInTokenHolders}
                 >
                   Go
@@ -431,13 +384,13 @@ function App() {
               <div>
                 <div className="chainID">Chain ID</div>
                 <select
-                  value={chain}
+
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
                 >
-                  {chainIDs.map((option) => (
+                  {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.text}
+                      {option.chain_id} {option.label}
                     </option>
                   ))}
                 </select>
@@ -516,13 +469,13 @@ function App() {
                 <div className="chainID">Chain ID</div>
 
                 <select
-                  value={chain}
+
                   onChange={(e) => setChain(e.target.value)}
                   id="chainID-select"
                 >
-                  {chainIDs.map((option) => (
+                  {data5.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.text}
+                      {option.chain_id} {option.label}
                     </option>
                   ))}
                 </select>
@@ -610,7 +563,7 @@ function App() {
             <div className="field-data">
               <div className="get-chains">Get all chains</div>
               <div>
-                <button className="button1" onClick={fetchAllchains}>
+                <button className="button-chains" onClick={fetchAllchains}>
                   Get All Chains
                 </button>
               </div>
@@ -668,8 +621,8 @@ function App() {
             <div className="field-data">
               <div className="get-chains">Chains statuses</div>
               <div>
-                <button className="button1" onClick={fetchChainStatus}>
-                  Get Chains statuses
+                <button className="button-statuses" onClick={fetchChainStatus}>
+                  Get Chains Statuses
                 </button>
               </div>
               {fetched6 ? (
